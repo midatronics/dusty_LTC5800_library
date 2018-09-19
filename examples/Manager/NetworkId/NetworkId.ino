@@ -18,7 +18,7 @@
 #include <Arduino.h>
 #include <DustManager.h>
 
-int newId = 1234; // write here your new NetworkId
+int newId = 1229; // write here your new NetworkId
 boolean readId=true;
 
 //=========================== "main" ==========================================

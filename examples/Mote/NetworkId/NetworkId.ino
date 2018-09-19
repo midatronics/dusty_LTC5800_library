@@ -18,7 +18,7 @@
 #include <Arduino.h>
 #include <DustMote.h>
 
-int newId = 1240; // write here your new NetworkId
+int newId = 1229; // write here your new NetworkId
 boolean readCmd=true;
 
 IpMtDataModel *dataModel;
@@ -73,7 +73,7 @@ void loop() {
     break;
     
     default :
-        if (readcmd)
+        if (readCmd)
             dustMote.retrieveNetworkId();
     break;
   }
