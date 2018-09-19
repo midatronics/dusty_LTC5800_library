@@ -38,9 +38,13 @@
 *                  dataLen  : the Length of the same stream.
 * created 08 07 2016
 *     by Mik (mik@ioteam.it)
+*     
+* edit 09 19 2018
+*     by Amanu95 (emanuele.mancuso@midatronics.com)
 *
 *  This example is in the public domain
-*      https://github.com/ioteamit/dusty_LTC5800_library
+*      https://github.com/midatronics/dusty_LTC5800_library
+*      
 */
 #include <Arduino.h>
 #include <DustManager.h>

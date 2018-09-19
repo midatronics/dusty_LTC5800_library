@@ -88,6 +88,8 @@ public:
     void                executeReplyCb();
     void                getConfiguredNetworkId();
     void                retrieveNetworkInfo();
+    void 				retrieveNetworkId();
+    void				setNetworkId(uint16_t networkId);
 	void                api_geTimeInfo();
     void                api_getNetworkInfo(void);
     void                getMac();
@@ -120,6 +122,7 @@ private:
     void                api_configureNetworkId();
     void                api_getMac();
     void                api_setNetworkId();
+    void				api_getNetworkId();
     void                api_setRatioTestTx();
 
     //=== helpers
@@ -134,6 +137,7 @@ private:
     void                api_configureNetworkId_reply();
     void                api_getMac_reply();
     void                api_setNetworkId_reply();
+    void				api_getNetworkId_reply();
     void                api_setRatioTestTx_reply();
     void                api_getNetworkInfo_reply();
     void                api_geTimeInfo_reply();

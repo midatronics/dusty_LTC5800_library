@@ -450,6 +450,64 @@ void IpMtWrapper::api_getServiceInfo_reply() {
 
 //===== getNetworkId
 
+void IpMtWrapper::api_getNetworkId(void) {
+    dn_err_t err;
+	
+	app_vars.cbStatus = Idle;
+	
+    // record time
+    app_vars.fsmPreviousEvent = millis();
+
+    // log
+    SerialPrintln("");
+    SerialPrint("INFO:     api_getNetworkId ");
+
+    // issue function
+    err = dn_ipmt_getParameter_networkId(
+            (dn_ipmt_getParameter_networkId_rpt*)(app_vars.replyBuf)
+    );
+
+    // log
+    SerialPrintln(err);
+    SerialPrint("return : ");
+	
+	if (err == DN_ERR_NONE) {
+		app_vars.cbStatus = CommandSent;
+		// arm callback
+    	fsm_setCallback(&IpMtWrapper::api_getNetworkId_reply);
+		// schedule timeout event
+    	fsm_scheduleEvent(SERIAL_RESPONSE_TIMEOUT, &IpMtWrapper::api_response_timeout);
+	}
+    
+}
+
+void IpMtWrapper::api_getNetworkId_reply() {
+    dn_ipmt_getParameter_networkId_rpt* reply;
+	
+	// record time
+    app_vars.fsmPreviousEvent = millis();
+    
+	SerialPrintln("INFO:     api_getNetworkId_reply");
+
+    reply = (dn_ipmt_getParameter_networkId_rpt*)app_vars.replyBuf;
+
+    SerialPrint("INFO:     networkId = 0x");
+    SerialPrintln(reply->networkId, HEX);
+    
+    if (reply->RC  == RC_OK) {
+		app_vars.cbStatus = Completed;
+
+		// clear timeout
+		fsm_cancelEvent();
+
+		// end of list or problem reading
+		// reset next mote to ask
+		SerialPrintln("INFO:     END LIST");
+	}
+}
+
+//===== configureNetworkId
+
 void IpMtWrapper::api_configureNetworkId(void) {
     dn_err_t err;
 
@@ -543,9 +601,11 @@ void IpMtWrapper::api_setNetworkId_reply() {
     reply = (dn_ipmt_setParameter_networkId_rpt*)app_vars.replyBuf;
 
 
-    if (reply->RC == RC_OK) {
+    /*if (reply->RC == RC_OK) {
         fsm_scheduleEvent(2*CMD_PERIOD, &IpMtWrapper::api_getMoteStatus);
-    }
+    }*/
+    SerialPrint("INFO:     RC=");
+    SerialPrintln(reply->RC);
 }
 
 //===== getMac
@@ -785,6 +845,17 @@ void IpMtWrapper::getConfiguredNetworkId()
 void IpMtWrapper::retrieveNetworkInfo()
 {
     fsm_scheduleEvent(2*CMD_PERIOD, &IpMtWrapper::api_getNetworkInfo);
+}
+
+void IpMtWrapper::retrieveNetworkId()
+{
+    fsm_scheduleEvent(2*CMD_PERIOD, &IpMtWrapper::api_getNetworkId);
+}
+
+void IpMtWrapper::setNetworkId(uint16_t networkId)
+{
+	this->networkId = networkId;
+    fsm_scheduleEvent(2*CMD_PERIOD, &IpMtWrapper::api_setNetworkId);
 }
 
 

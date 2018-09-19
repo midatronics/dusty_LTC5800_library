@@ -1,15 +1,18 @@
 /*
-*     SmeIoT Library - NetworkID
+*     SmeIoT Library - NetworkID Manager
 *
 *  This example shows how to change the NetworkId.
 *   
 *	Different NetworkId are required when more than one dust network is on the same area
 *
 * created 10 07 2017
-      by Mik (mik@ioteam.it)
-
-   This example is in the public domain
-      https://github.com/ioteamit/dusty_LTC5800_library
+*     by Mik (mik@ioteam.it)
+*     
+* edit 09 19 2018
+*     by Amanu95 (emanuele.mancuso@midatronics.com)
+*
+*  This example is in the public domain
+*      https://github.com/midatronics/dusty_LTC5800_library
 */
 
 #include <Arduino.h>

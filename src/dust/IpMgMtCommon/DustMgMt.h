@@ -1,14 +1,14 @@
-#include "../IpMtWrapper/IpMtWrapper.h"
 /*
  * DustMgMt.cpp
  *
  *  Created on: Apr 26, 2015
  * by Mik (mik@ioteam.it)
+* edit on Sept 19 2018 by Amanu95 (emanuele.mancuso@midatronics.com)
  *
  * License Information
  * -------------------
  *
- * Copyright (c) IOteam S.r.l. All right reserved.
+ * Copyright (c) Midatronics S.r.l. All right reserved.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -26,6 +26,8 @@
  */
 #ifndef DUSTMGMT_H_
 #define DUSTMGMT_H_
+
+#include "../IpMtWrapper/IpMtWrapper.h"
 
 class DustMgMt {
 	public:
